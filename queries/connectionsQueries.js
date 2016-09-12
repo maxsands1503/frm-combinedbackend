@@ -32,7 +32,15 @@ module.exports ={
   },
   getOneConnection: function(id){
     return knex('connections').where('user_id', id).first().then(function(connection){
-      return knex('list_users').where('conn_id', connection.id)
+      return knex('list_users').where('conn_id', connection.id).then(function(lists){
+        return knex('lists').whereIn('id', lists.list_id).then(function(titles){
+          return {
+            connection: connection,
+            lists: lists,
+            titles: titles
+          }
+        })
+      })
     })
     // .then(function(con){
     //   return knex('list_users').where('conn_id', con.id).then(function(listU){
