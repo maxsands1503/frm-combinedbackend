@@ -19,6 +19,7 @@ module.exports = {
     return ListItems().where('list_id',id);
   },
   find: function(id){
+    console.log("Hi Max");
     return ListItems().where('id',id);
   },
   update: function(input){
