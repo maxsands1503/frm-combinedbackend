@@ -31,17 +31,18 @@ module.exports ={
     }
   },
   getOneConnection: function(id){
-    return knex('connections').where('user_id', id).first().then(function(con){
-      return knex('list_users').where('conn_id', con.id).then(function(listU){
-        return knex('lists').whereIn('id', listU.list_id).then(function(listS){
-          return {
-            con: con,
-            listU: listU,
-            listS: listS
-          }
-        })
-      })
-    })
+    return knex('connections').where('user_id', id).first()
+    // .then(function(con){
+    //   return knex('list_users').where('conn_id', con.id).then(function(listU){
+    //     return knex('lists').whereIn('id', listU.list_id).then(function(listS){
+    //       return {
+    //         con: con,
+    //         listU: listU,
+    //         listS: listS
+    //       }
+    //     })
+    //   })
+    // })
   },
   getJustOneConnection: function(id){
     return knex('connections').where('id', id).first().then(function(con){
