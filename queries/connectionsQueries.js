@@ -32,11 +32,11 @@ module.exports ={
   },
   getOneConnection: function(id){
     return knex('connections').where('user_id', id).first().then(function(connection){
-      return knex('list_users').where('conn_id', connection.id).then(function(list){
-        return knex('lists').where('id', list.list_id).then(function(titles){
+      return knex('list_users').where('conn_id', connection.id).then(function(jello){
+        return knex('lists').where('id', jello.list_id).then(function(titles){
           return {
             connection: connection,
-            lists: lists,
+            jello: jello,
             titles: titles
           }
         })
